@@ -3,11 +3,12 @@
 body {
     font-family: 'Ubuntu', 'Helvetica Neue', 'Helvetica', sans-serif;
     font-weight: 400;
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
 .product-picture {
     float: left;
-    height: 130px;
-    margin-right: 10px;
+    width: 33%;
+    padding-right: 25px;
 }
-
