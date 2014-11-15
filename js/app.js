@@ -24,13 +24,13 @@ angular.module('ReviewHandler', ['ui.bootstrap'])
                     $scope.loading = false;
                 });
         };
+        $scope.refreshReviews();
         $scope.addReview = function(newReview) {
             $scope.inserting = true;
             $http.post(reviewUrl, newReview)
                 .success(function(responseData) {
                     newReview.objectId = responseData.objectId;
-                    $scope.reviews.push(reviews);
-                    $scope.newReview = {done: false};
+                    $scope.reviews.push(newReview);
                 })
                 .error(function (err) {
                     console.log(err);
