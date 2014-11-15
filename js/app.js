@@ -12,6 +12,42 @@ angular.module('ReviewHandler', ['ui.bootstrap'])
     .controller('ReviewController', function($scope, $http) {
         var reviewUrl = 'https://api.parse.com/1/classes/Review';
         $scope.refreshReviews = function() {
-
-        }
+            $scope.loading = true;
+            $http.get(reviewUrl + '?where={"done": false}')
+                .sucess(function(responseData) {
+                    $scope.reviews = responseData.results;
+                })
+                .error(function(err) {
+                    console.log(err);
+                })
+                .finally(function() {
+                    $scope.loading = false;
+                });
+        };
+        $scope.addReview = function(newReview) {
+            $scope.inserting = true;
+            $http.post(reviewUrl, newReview)
+                .success(function(responseData) {
+                    newReview.objectId = responseData.objectId;
+                    $scope.reviews.push(reviews);
+                    $scope.newReview = {done: false};
+                })
+                .error(function (err) {
+                    console.log(err);
+                })
+                .finally(function() {
+                    $scope.inserting = false;
+                });
+        };
+        $scope.updateReview = function(review) {
+            $scope.updating = true;
+            $http.put(reviewUrl + '/' + review.objectId, review)
+                .success(function(responseData){})
+                .error(function(err) {
+                    console.log(err);
+                })
+                .finally(function() {
+                    $scope.updating = true;
+                })
+        };
     });
