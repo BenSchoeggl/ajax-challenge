@@ -15,7 +15,7 @@ angular.module('ReviewHandler', ['ui.bootstrap'])
             $scope.loading = true;
             $http.get(reviewUrl + '?where={"done": false}')
                 .sucess(function(responseData) {
-                    $scope.reviews = responseData.results;
+                    $scope.reviewGroup = responseData.results;
                 })
                 .error(function(err) {
                     console.log(err);
@@ -30,7 +30,7 @@ angular.module('ReviewHandler', ['ui.bootstrap'])
             $http.post(reviewUrl, newReview)
                 .success(function(responseData) {
                     newReview.objectId = responseData.objectId;
-                    $scope.reviews.push(newReview);
+                    $scope.reviewGroup.push(newReview);
                 })
                 .error(function (err) {
                     console.log(err);
