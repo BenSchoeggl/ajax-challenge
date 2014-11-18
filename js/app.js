@@ -16,6 +16,8 @@ angular.module('ReviewHandler', ['ui.bootstrap'])
             $http.get(reviewUrl + '?where={"done": false}')
                 .sucess(function(responseData) {
                     $scope.reviewGroup = responseData.results;
+
+                    // add for loop group by 3 using mod
                 })
                 .error(function(err) {
                     console.log(err);
@@ -24,6 +26,7 @@ angular.module('ReviewHandler', ['ui.bootstrap'])
                     $scope.loading = false;
                 });
         };
+
         $scope.refreshReviews();
         $scope.addReview = function(newReview) {
             $scope.inserting = true;
@@ -39,6 +42,7 @@ angular.module('ReviewHandler', ['ui.bootstrap'])
                     $scope.inserting = false;
                 });
         };
+
         $scope.updateReview = function(review) {
             $scope.updating = true;
             $http.put(reviewUrl + '/' + review.objectId, review)
