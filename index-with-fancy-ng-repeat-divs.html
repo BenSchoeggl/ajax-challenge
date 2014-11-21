@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Comments</title>
+
+        <!-- style sheets -->
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- angular script sheets -->
+        <script src="lib/angular-1.3.1/angular.js"></script>
+        <script src="lib/angular-bootstrap/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    </head>
+
+    <body>
+        <main class="container-fluid" ng-app="ReviewHandler" ng-controller="ReviewController">
+            <!-- Main hero unit containing product information -->
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="img/super-bass-o-matic-76.jpg" alt="product picture" class="product-picture">
+                    </div> <!-- img div _-->
+                    <div class="col-md-8">
+                        <h1>The Super Bass-O-Matic '76</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia cumque deserunt ullam repudiandae nisi corporis! Ipsum, ducimus commodi, itaque porro distinctio consequuntur! Autem doloremque numquam nemo ex nulla tempora quis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde nihil doloribus excepturi quisquam error possimus veritatis facere, commodi cumque ab atque dolore ducimus obcaecati ipsa, impedit! Consequuntur, eligendi iure cumque!</p>
+                        <p><a href="https://www.google.com/webhp?tab=ww&ei=4VhmVJ2YA-eCigKPiYDQDw&ved=0CAYQ1S4#q=Super+Bass-O-Matic+'76" class="btn btn-success btn-large">Research More</a></p>
+                    </div> <!-- product description -->
+                </div> <!-- row class -->
+            </div> <!-- hero unit -->
+
+            <h2>Add a Review</h2>
+            <form ng-submit="addReview(newReview)">
+                <div class="form-group">
+                    <div>
+                        <label for="review-title">Title</label>
+                        <input type="text" id="review-title" class="form-control" placeholder="Title of Your Review..."
+                               ng-model="newReview.title"/>
+                    </div>
+                    <div>
+                        <label>Rating</label>
+                        <rating max="5" ng-model="newReview.rating"></rating>
+                    </div><!-- rating div -->
+                    <div>
+                        <label for="review-author">Your Name</label>
+                        <input type="text" id="review-author" class="form-control" placeholder="Your Name..."
+                               ng-model="newReview.authorName"/>
+                    </div> <!-- review information div -->
+                    <div>
+                        <label for="review-desription">What did you think of the Super Bass-O-Matic?</label>
+                        <textarea id="review-desription" class="form-control" placeholder="What did you think?..."
+                                  maxlength="2500" ng-model="newReview.description"></textarea>
+                    </div> <!-- review block text -->
+                    <button type="submit" class="btn btn-primary" ng-disabled="inserting">Post Review</button>
+                </div> <!-- form-group div -->
+            </form> <!-- review form -->
+            <section>
+                <h2>Reviews</h2>
+                <div ng-repeat="reviewGroup in reviewGroupsBy3" class="row-fluid">
+                    <div ng-repeat="review in reviewGroup" class="col-md-4">
+                        <h2>{{review.title}}</h2>
+                        <rating max="5" readonly="isReadonly" value="review.rating"></rating>
+                        <p>{{review.description}}</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+    <script src="js/app.js"></script>
+</html>

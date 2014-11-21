@@ -10,3 +10,8 @@ body {
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
 }
+
+.form-group div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
